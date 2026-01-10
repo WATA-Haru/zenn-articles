@@ -58,7 +58,7 @@ Ubuntuインストーラーを使った初期設定では、途中に以下の�
 ### source
 
 `ubuntu-desktop`か`ubuntu-desktop-minimal`を選択できます。
-`ubuntu-desktop`はlibreofficeやthunderbirdなどを含みますが、私は使わないので`minimal`の方を選択しました。詳しい違いを知りたい方は以下を参照してください。
+`ubuntu-desktop`はLibreOfficeやThunderbirdなどを含みますが、私は使わないので`minimal`の方を選択しました。両者で含まれるパッケージの詳しい違いを知りたい方は以下を参照してください。
 
  [What is the difference between Ubuntu 24.04 Default (minimal) installation and Full installation? - Ask Ubuntu](https://askubuntu.com/questions/1511204/what-is-the-difference-between-ubuntu-24-04-default-minimal-installation-and-f)
 
