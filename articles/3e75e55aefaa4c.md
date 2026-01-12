@@ -19,7 +19,7 @@ Ubuntu Desktop 24.04 LTSから、`autoinstall.yaml`を使った初期設定の�
 :::message
 Ubuntuをインストールするマシンとは別にもう一台のマシンが必要です。
 
-もう一台のマシンは、同一LAN内にHTTPサーバを建てて`autoinstall.yaml`を公開するために使用します。ここで公開された`autoinstall.yaml`をインストール対象のマシンから読み取ります。
+もう一台のマシンは、同一LAN内にHTTPサーバを立てて`autoinstall.yaml`を公開するために使用します。ここで公開された`autoinstall.yaml`をインストール対象のマシンから読み取ります。
 :::
 <!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
 
