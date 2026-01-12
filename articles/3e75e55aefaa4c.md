@@ -17,7 +17,9 @@ Ubuntu Desktop 24.04 LTSから、`autoinstall.yaml`を使った初期設定の�
 タイトルの「半自動」は、`autoinstall.yaml`の設定項目に行くまでは手動で設定する必要があるためそのように表現しています。
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
 :::message
-`autoinstall.yaml`を使う際、Ubuntuをインストールするマシンのほかに、ローカルでhttpサーバを立てるためのマシンが必要になります。
+Ubuntuをインストールするマシンとは別にもう一台のマシンが必要です。
+
+もう一台のマシンは、同一LAN内にHTTPサーバを立てて`autoinstall.yaml`を公開するために使用します。ここで公開された`autoinstall.yaml`をインストール対象のマシンから読み取ります。
 :::
 <!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
 
@@ -58,7 +60,7 @@ Ubuntuインストーラーを使った初期設定では、途中に以下の�
 ### source
 
 `ubuntu-desktop`か`ubuntu-desktop-minimal`を選択できます。
-`ubuntu-desktop`はlibreofficeやthunderbirdなどを含みますが、私は使わないので`minimal`の方を選択しました。詳しい違いを知りたい方は以下を参照してください。
+`ubuntu-desktop`はLibreOfficeやThunderbirdなどを含みますが、私は使わないので`minimal`の方を選択しました。両者で含まれるパッケージの詳しい違いを知りたい方は以下を参照してください。
 
  [What is the difference between Ubuntu 24.04 Default (minimal) installation and Full installation? - Ask Ubuntu](https://askubuntu.com/questions/1511204/what-is-the-difference-between-ubuntu-24-04-default-minimal-installation-and-f)
 
@@ -135,6 +137,14 @@ Ubuntuのインストーラーは、インストールが正常に完了した�
 ここでは、先ほど作った`autoinstall.yaml`を読み込むまでの手順を解説します。
 なお、インストールメディアの作成やBootMenuからの起動についての詳細は説明しません。
 
+### 前提条件
+
+作業前に以下を準備してください。
+
+- Ubuntuをインストールするマシン
+- 同一LAN内で`autoinstall.yaml`を配信するHTTPサーバ用のマシン
+- インターネットに接続できる環境(aptのパッケージインストールのため)
+
 ### Ubuntuのインストールから`autoinstall.yaml`の読み込み画面まで
 
 Ubuntuをインストールメディアから起動し、Try or Install UbuntuでUbuntuをインストールします。
@@ -144,9 +154,9 @@ Ubuntuをインストールメディアから起動し、Try or Install Ubuntu�
 Ubuntuのインストーラーが立ち上がるので指示に沿って進みます。
 なお、ここでキーボード設定や言語設定をしても、後から`autoinstall.yaml`の設定で上書きされます。
 
-![Ubuntuのインストーラーの初期設定画面|439x340](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766591903902.webp =450x)
+![Ubuntuのインストーラーの初期設定画面](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766591903902.webp =450x)
 
-ローカルのhttpサーバから`autoinstall.yaml`を読み込むため、ネットワークの設定は必ずしてください。
+同一LAN内のHTTPサーバから`autoinstall.yaml`を読み込むため、ネットワークの設定は必ずしてください。
 ![インターネットの接続方法を選択する画面](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766592090113.webp =450x)
 
 インストーラーの指示に従うと、一度インストーラーを閉じることになります。
@@ -157,13 +167,16 @@ Ubuntuのインストーラーが立ち上がるので指示に沿って進み�
 ![対話式インストールと自動インストールの選択画面で自動インストールを選択する様子](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766592414419.webp =450x)
 *自動インストールを選択*
 
-### ローカルにhttpサーバを立てて`autoinstall.yaml`をUbuntu側から読み取り可能にする
+### ローカルにHTTPサーバを立てて`autoinstall.yaml`をUbuntu側から読み取り可能にする
 
-Ubuntu側から`autoinstall.yaml`を読み込むために、ローカルでhttpサーバを立てる別のマシンが必要になります。そのため、以下の作業はUbuntuのインストール作業をしていない方のマシンで行います。
+Ubuntu側から`autoinstall.yaml`を読み込むために、同一LAN内でHTTPサーバを立てる別のマシンが必要になります。そのため、以下の作業はUbuntuのインストール作業をしていない方のマシンで行います。
 
-本記事では、Windowsのターミナル上でpythonを使ってhttpサーバを立てる例を紹介します。OSによってコマンドが異なるため、適宜自分のマシンに読み替えてください。
+本記事ではWindowsのPowerShell上でPythonを使ってHTTPサーバを立てる例を紹介します。WindowsにPythonをインストールする方法はこちらを参考にしてください。
+@[card](https://www.python.jp/install/windows/install.html)
 
-まずはターミナルから`cd`で`autoinstall.yaml`が置いてあるディレクトリに移動します。以下のように`autoinstall.yaml`があることを確認します。
+なお、今後の操作はOSによってコマンドが異なるため、適宜自分のマシンで使うものに読み替えてください。
+
+まずはPowerShellから`cd`で`autoinstall.yaml`が置いてあるディレクトリに移動します。以下のように`autoinstall.yaml`があることを確認します。
 
 ```shell
 PS C:\Users\name\dotfiles\ubuntu> ls
@@ -194,7 +207,9 @@ Wireless LAN adapter Wi-Fi:
 ```
 
 実行結果から、IPv4 Addressが`192.168.0.24`だと分かりました。
-次に、pythonでローカルのhttpサーバを立てます。
+
+次に、Pythonで同一LAN内にHTTPサーバを立てます。
+パブリックネットワークとプライベートネットワークで接続を許可するか確認するポップアップが出るので許可してください。サーバを停止してもファイアウォールの設定は残るので、不要になったら削除してください。(削除方法は後述します。)
 
 ```shell
 python -m http.server 8080
@@ -221,8 +236,49 @@ Ubuntuのインストール作業をしているマシンに戻ります。
 ![インストールのエラーメッセージ](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766596326412.webp =450x)
 
 `autoinstall.yaml`で設定した後は何も設定していなければ、自動で再起動されて設定が反映されます。
+Ubuntu側の設定はこれで以上です。
 
-設定はこれで以上です。
+### 使用後にファイアウォールのルールを削除する
+
+`python -m http.server <port>`を許可すると、Windows Defenderファイアウォールに`python.exe`の受信許可ルールが作成されます。サーバを停止してもこのルールは残るため、不要になったら削除します。以下はWindowsでの例です。
+
+管理者権限でPowerShellを起動し、`python.exe`に紐づく受信ルールを確認します。
+
+```shell
+# python.exe に紐づく受信ルールを一覧表示
+$rules = Get-NetFirewallRule -Direction Inbound |
+  Where-Object { $_.DisplayName -like "*python*" -or (($_ | Get-NetFirewallApplicationFilter).Program -like "*python.exe") }
+
+$rules | ForEach-Object {
+  $pf = $_ | Get-NetFirewallPortFilter
+  [PSCustomObject]@{
+    DisplayName = $_.DisplayName
+    Enabled     = $_.Enabled
+    Profile     = $_.Profile
+    Protocol    = $pf.Protocol
+    LocalPort   = $pf.LocalPort
+    RemotePort  = $pf.RemotePort
+  }
+} | Format-Table -AutoSize
+```
+
+私の環境だと以下のように表示されました。
+
+```txt
+DisplayName Enabled Profile Protocol LocalPort RemotePort
+----------- ------- ------- -------- --------- ----------
+Python         True  Public TCP      Any       Any
+Python         True  Public UDP      Any       Any
+```
+
+削除する場合は`Remove-NetFirewallRule`で`python.exe`に紐づくルールを削除します。
+
+```powershell
+# Pythonに紐づくルールを完全に削除する
+Get-NetFirewallRule -Direction Inbound |
+  Where-Object { $_.DisplayName -like "*python*" } |
+  Remove-NetFirewallRule
+```
 
 ## おわりに
 
