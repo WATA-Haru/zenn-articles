@@ -146,7 +146,7 @@ Ubuntuをインストールメディアから起動し、Try or Install Ubuntu�
 Ubuntuのインストーラーが立ち上がるので指示に沿って進みます。
 なお、ここでキーボード設定や言語設定をしても、後から`autoinstall.yaml`の設定で上書きされます。
 
-![Ubuntuのインストーラーの初期設定画面|439x340](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766591903902.webp =450x)
+![Ubuntuのインストーラーの初期設定画面](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766591903902.webp =450x)
 
 同一LAN内のHTTPサーバから`autoinstall.yaml`を読み込むため、ネットワークの設定は必ずしてください。
 ![インターネットの接続方法を選択する画面](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766592090113.webp =450x)
