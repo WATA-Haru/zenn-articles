@@ -167,7 +167,7 @@ Ubuntuのインストーラーが立ち上がるので指示に沿って進み�
 ![対話式インストールと自動インストールの選択画面で自動インストールを選択する様子](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766592414419.webp =450x)
 *自動インストールを選択*
 
-### ローカルにHTTPサーバを立てて`autoinstall.yaml`をUbuntu側から読み取り可能にする
+### 同一LAN内にHTTPサーバを立てて`autoinstall.yaml`をUbuntu側から読み取り可能にする
 
 Ubuntu側から`autoinstall.yaml`を読み込むために、同一LAN内でHTTPサーバを立てる別のマシンが必要になります。そのため、以下の作業はUbuntuのインストール作業をしていない方のマシンで行います。
 
@@ -215,17 +215,17 @@ Wireless LAN adapter Wi-Fi:
 python -m http.server 8080
 ```
 
-これで、他のローカルデバイスから`http://192.168.0.24:8080/autoinstall.yaml`にアクセスすると`autoinstall.yaml`の内容を読み取ることができるようになりました。
-(他のデバイスから読み取る際はローカルサーバを起動させたままにしてください。)
+これで、同一LAN内の他のデバイスから`http://192.168.0.24:8080/autoinstall.yaml`にアクセスすると`autoinstall.yaml`の内容を読み取ることができるようになりました。
+(他のデバイスから読み取る際はHTTPサーバを起動させたままにしてください。)
 
 ### `autoinstall.yaml`から自動設定
 
 Ubuntuのインストール作業をしているマシンに戻ります。
-`autoinstall.yaml`をネットワーク経由で読み取るため、ローカルサーバのURLを入力します。
+`autoinstall.yaml`をネットワーク経由で読み取るため、同一LAN内のHTTPサーバのURLを入力します。
 ここでは`http://192.168.0.24:8080/autoinstall.yaml`を入力します。
 
-![ローカルサーバ上のautoinstall.yamlを入力](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766594338173.webp =450x)
-*ローカルサーバ上のautoinstall.yamlを読み取る*
+![HTTPサーバ上のautoinstall.yamlを入力](/images/3e75e55aefaa4c/3e75e55aefaa4c-1766594338173.webp =450x)
+*HTTPサーバ上のautoinstall.yamlを読み取る*
 
 以下のように`autoinstall.yaml`の確認画面が出るので、不備がないか確認して問題なければインストールに進みます。
 
