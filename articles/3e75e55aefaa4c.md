@@ -4,7 +4,7 @@ emoji: 🐧
 type: tech
 topics:
   - ubuntu
-published: false
+published: true
 publication_name: bita
 ---
 ## はじめに
