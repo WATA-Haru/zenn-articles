@@ -10,7 +10,10 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "**/*.md": ["textlint", "markdownlint-cli2"]
+    "**/*.md": [
+      "textlint",
+      "markdownlint-cli2"
+    ]
   },
   "repository": {
     "type": "git",
@@ -25,7 +28,7 @@
   },
   "homepage": "https://github.com/WATA-Haru/zenn-connect#readme",
   "dependencies": {
-    "zenn-cli": "^0.2.11"
+    "zenn-cli": "^0.4.7"
   },
   "devDependencies": {
     "husky": "^9.1.7",
