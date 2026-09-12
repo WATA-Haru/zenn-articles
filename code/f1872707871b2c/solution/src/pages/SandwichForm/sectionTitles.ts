@@ -1,4 +1,4 @@
-import type { InputStep } from "../../model/store/types";
+import type { InputStep } from "../../model/types";
 
 export const sectionTitles: Record<InputStep, string> = {
   choiceUser: "ユーザ選択",

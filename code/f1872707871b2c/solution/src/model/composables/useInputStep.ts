@@ -1,5 +1,5 @@
 import { computed, ref, type Ref } from "vue";
-import type { InputStep, SandwichFormData } from "./types";
+import type { InputStep, SandwichFormData } from "../types";
 
 const INITIAL_INPUT_STEP: InputStep = "choiceUser";
 

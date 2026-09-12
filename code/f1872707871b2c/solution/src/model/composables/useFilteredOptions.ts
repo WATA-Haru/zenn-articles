@@ -1,5 +1,5 @@
 import { computed, type Ref } from "vue";
-import type { OptionInput, SandwichFormData } from "./types";
+import type { OptionInput, SandwichFormData } from "../types";
 import {
   choiceUserOptions,
   hotOptions,
@@ -7,7 +7,7 @@ import {
   sideMenuOptions,
   sourceOptions,
   vegetableOptions,
-} from "./const";
+} from "../const";
 
 type FilteredOptions = {
   choiceUser: OptionInput[];

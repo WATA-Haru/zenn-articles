@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
-import type { SandwichFormData } from "./types";
-import { initialFormData } from "./const";
+import type { SandwichFormData } from "../types";
+import { initialFormData } from "../const";
 
 /**
  * フォームの入力データ（＝data）を保持する Pinia store。

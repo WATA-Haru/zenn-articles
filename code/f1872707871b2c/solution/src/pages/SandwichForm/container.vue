@@ -2,8 +2,8 @@
 import { computed, toRef } from "vue";
 import Presentation from "./index.vue";
 import { useSandwichFormStore } from "../../model/store/useSandwichFormStore";
-import { useInputStep } from "../../model/store/useInputStep";
-import { useFilteredOptions } from "../../model/store/useFilteredOptions";
+import { useInputStep } from "../../model/composables/useInputStep";
+import { useFilteredOptions } from "../../model/composables/useFilteredOptions";
 import type {
   ChoiceUser,
   Hot,
@@ -11,7 +11,7 @@ import type {
   SideMenu,
   Source,
   Vegetable,
-} from "../../model/store/types";
+} from "../../model/types";
 
 const { formData, reset: resetForm, toggleArrayValue } = useSandwichFormStore();
 

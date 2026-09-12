@@ -4,7 +4,7 @@ import type {
   InputStep,
   OptionInput,
   SandwichFormData,
-} from "../../model/store/types";
+} from "../../model/types";
 import { sectionTitles } from "./sectionTitles";
 
 /** ステッパー1つ分の表示情報 */
