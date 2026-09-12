@@ -45,8 +45,8 @@ const emit = defineEmits<{
   (event: "change:mainMeal", value: string): void;
   (event: "change:source", value: string): void;
   (event: "change:hot", value: string): void;
-  (event: "toggle:vegetable", value: string): void;
-  (event: "toggle:sideMenu", value: string): void;
+  (event: "change:vegetable", value: string): void;
+  (event: "change:sideMenu", value: string): void;
   (event: "click:next"): void;
   (event: "click:previous"): void;
   (event: "click:reset"): void;
@@ -131,7 +131,7 @@ const emit = defineEmits<{
             type="checkbox"
             :value="option.value"
             :checked="(formData.vegetables as string[]).includes(option.value)"
-            @change="emit('toggle:vegetable', option.value)"
+            @change="emit('change:vegetable', option.value)"
           />
           {{ option.label }}
         </label>
@@ -180,7 +180,7 @@ const emit = defineEmits<{
             type="checkbox"
             :value="option.value"
             :checked="(formData.sideMenus as string[]).includes(option.value)"
-            @change="emit('toggle:sideMenu', option.value)"
+            @change="emit('change:sideMenu', option.value)"
           />
           {{ option.label }}
         </label>
