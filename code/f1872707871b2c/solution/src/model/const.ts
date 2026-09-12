@@ -38,7 +38,6 @@ export const mainMealOptions: OptionInput[] = [
   { value: "beef", label: "ビーフ" },
   { value: "chicken", label: "チキン" },
   { value: "shrimp", label: "エビ" },
-  { value: "beans", label: "豆" },
 ];
 
 export const vegetableOptions: OptionInput[] = [
@@ -48,7 +47,6 @@ export const vegetableOptions: OptionInput[] = [
 ];
 
 export const sourceOptions: OptionInput[] = [
-  { value: "cheese", label: "チーズソース" },
   { value: "chili", label: "チリソース" },
   { value: "basil", label: "バジルソース" },
 ];

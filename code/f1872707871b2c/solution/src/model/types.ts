@@ -13,9 +13,9 @@ export type OptionInput = {
 };
 
 export type ChoiceUser = "normal" | "vegetarian" | "noShrimp";
-export type MainMeal = "beef" | "chicken" | "shrimp" | "beans";
+export type MainMeal = "beef" | "chicken" | "shrimp";
 export type Vegetable = "tomato" | "avocado" | "lettuce";
-export type Source = "cheese" | "chili" | "basil";
+export type Source = "chili" | "basil";
 export type Hot = "mild" | "spicy";
 export type SideMenu = "potato" | "cola" | "garlicShrimp";
 
