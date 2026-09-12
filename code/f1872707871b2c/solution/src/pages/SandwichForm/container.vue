@@ -42,7 +42,7 @@ const filteredMainMealOptions = computed(() =>
 );
 
 const filteredSideMenuOptions = computed(() =>
-  formData.choiceUser === "noShrimp"
+  formData.choiceUser === "noShrimp" || formData.choiceUser === "vegetarian"
     ? sideMenuOptions.filter((option) => option.value !== "garlicShrimp")
     : sideMenuOptions
 );
