@@ -10,7 +10,6 @@ import {
   sourceOptions,
   hotOptions,
   sideMenuOptions,
-  sectionTitles,
 } from "../../model/store/const";
 import type {
   ChoiceUser,
@@ -60,13 +59,10 @@ const options = computed(() => ({
 const steps = computed(() =>
   inputStepList.value.map((step) => ({
     id: step,
-    title: sectionTitles[step],
     isCurrent: currentInputStep.value === step,
     isVisited: visitedInputSteps.value.includes(step),
   }))
 );
-
-const sectionTitle = computed(() => sectionTitles[currentInputStep.value]);
 
 // --- ハンドラ ---------------------------------------------------------------
 // 上流の選択が変わると下流の選択が無効になりうるので、整合性を保つために関連値をリセットする。
@@ -119,7 +115,6 @@ const handleReset = () => {
 <template>
   <Presentation
     :input-step="currentInputStep"
-    :section-title="sectionTitle"
     :form-data="formData"
     :steps="steps"
     :options="options"

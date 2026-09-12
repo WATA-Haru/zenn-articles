@@ -26,16 +26,6 @@ export const initialFormData: SandwichFormData = {
   sideMenus: [],
 };
 
-/** 各ページの見出し */
-export const sectionTitles: Record<(typeof InputStepList)[number], string> = {
-  choiceUser: "ユーザ選択",
-  mainMeal: "具材選択",
-  vegetable: "野菜選択（複数選択可）",
-  source: "ソース",
-  hot: "辛さ",
-  sideMenu: "付け合せ（複数選択可）",
-};
-
 // --- 各ページの選択肢 -------------------------------------------------------
 
 export const choiceUserOptions: OptionInput[] = [

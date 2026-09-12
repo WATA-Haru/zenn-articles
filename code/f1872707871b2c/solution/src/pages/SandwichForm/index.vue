@@ -1,14 +1,15 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import type {
   InputStep,
   OptionInput,
   SandwichFormData,
 } from "../../model/store/types";
+import { sectionTitles } from "./sectionTitles";
 
 /** ステッパー1つ分の表示情報 */
 type StepView = {
   id: InputStep;
-  title: string;
   isCurrent: boolean;
   isVisited: boolean;
 };
@@ -16,8 +17,6 @@ type StepView = {
 type Props = {
   /** 現在のページ */
   inputStep: InputStep;
-  /** 現在ページの見出し */
-  sectionTitle: string;
   /** 入力データ */
   formData: SandwichFormData;
   /** 導出済みのページ列（ステッパー表示用） */
@@ -37,7 +36,9 @@ type Props = {
   isInputFinished: boolean;
 };
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const sectionTitle = computed(() => sectionTitles[props.inputStep]);
 
 const emit = defineEmits<{
   (event: "change:choiceUser", value: string): void;
@@ -65,7 +66,7 @@ const emit = defineEmits<{
           'stepper__item--visited': step.isVisited,
         }"
       >
-        {{ step.title }}
+        {{ sectionTitles[step.id] }}
       </li>
     </ol>
 
