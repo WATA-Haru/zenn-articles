@@ -3,7 +3,9 @@
 Zenn 記事「複雑な入力フォームの設計」で紹介する失敗パターンの実装デモ
 
 ページ遷移を xstate の state-machine で表現すると、条件付き分岐フォームでは何が破綻するかを見せるのが目的
-最終的に採用した設計は `../solution` を参照
+最終的に採用した設計は [`../solution`](../solution) を参照
+
+**デモ**: <https://wata-haru.github.io/zenn-articles/f1872707871b2c/state-machine/>
 
 ## 失敗例
 

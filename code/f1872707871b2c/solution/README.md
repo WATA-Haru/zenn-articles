@@ -5,6 +5,11 @@ Zenn 記事「複雑な入力フォームの設計」で紹介する導出パタ
 xstate のようにページ遷移そのものを state として持たず、入力データ（`formData`）
 から「表示すべきページ列」や「選べる選択肢」を computed で導出する構成をとる。
 
+**デモ**: <https://wata-haru.github.io/zenn-articles/f1872707871b2c/solution/>
+
+失敗パターン（xstate 版）と比較したい場合は
+[`../state-machine`](../state-machine) を参照。
+
 ## 起動
 
 ```sh
