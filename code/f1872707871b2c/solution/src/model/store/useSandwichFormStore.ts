@@ -58,13 +58,13 @@ export const useSandwichFormStore = defineStore("sandwichForm", () => {
     formData.value.hot = value;
   };
 
-  const toggleVegetable = (value: Vegetable) => {
+  const setVegetable = (value: Vegetable) => {
     formData.value.vegetables = formData.value.vegetables.includes(value)
       ? formData.value.vegetables.filter((item) => item !== value)
       : [...formData.value.vegetables, value];
   };
 
-  const toggleSideMenu = (value: SideMenu) => {
+  const setSideMenu = (value: SideMenu) => {
     formData.value.sideMenus = formData.value.sideMenus.includes(value)
       ? formData.value.sideMenus.filter((item) => item !== value)
       : [...formData.value.sideMenus, value];
@@ -80,8 +80,8 @@ export const useSandwichFormStore = defineStore("sandwichForm", () => {
     setMainMeal,
     setSource,
     setHot,
-    toggleVegetable,
-    toggleSideMenu,
+    setVegetable,
+    setSideMenu,
     reset,
   };
 });

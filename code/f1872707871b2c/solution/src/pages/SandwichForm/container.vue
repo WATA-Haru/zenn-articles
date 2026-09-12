@@ -21,8 +21,8 @@ const {
   setMainMeal,
   setSource,
   setHot,
-  toggleVegetable,
-  toggleSideMenu,
+  setVegetable,
+  setSideMenu,
   reset: resetForm,
 } = store;
 
@@ -64,12 +64,12 @@ const handleChangeHot = (value: string) => {
   setHot(value as Hot);
 };
 
-const handleToggleVegetable = (value: string) => {
-  toggleVegetable(value as Vegetable);
+const handleChangeVegetable = (value: string) => {
+  setVegetable(value as Vegetable);
 };
 
-const handleToggleSideMenu = (value: string) => {
-  toggleSideMenu(value as SideMenu);
+const handleChangeSideMenu = (value: string) => {
+  setSideMenu(value as SideMenu);
 };
 
 const handleReset = () => {
@@ -90,8 +90,8 @@ const handleReset = () => {
     @change:main-meal="handleChangeMainMeal"
     @change:source="handleChangeSource"
     @change:hot="handleChangeHot"
-    @change:vegetable="handleToggleVegetable"
-    @change:side-menu="handleToggleSideMenu"
+    @change:vegetable="handleChangeVegetable"
+    @change:side-menu="handleChangeSideMenu"
     @click:next="goNextInputStep"
     @click:previous="goPreviousInputStep"
     @click:reset="handleReset"
