@@ -10,7 +10,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "**/*.md": [
+    "{articles,books}/**/*.md": [
       "textlint",
       "markdownlint-cli2"
     ]
