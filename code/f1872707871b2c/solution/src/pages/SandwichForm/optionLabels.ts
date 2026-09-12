@@ -9,7 +9,7 @@ import type {
 
 export const choiceUserLabels: Record<ChoiceUser, string> = {
   normal: "ノーマル",
-  vegetarian: "ベジタリアン（肉・魚・乳製品NG）",
+  vegetarian: "ベジタリアン",
   noShrimp: "エビNG",
 };
 
