@@ -97,7 +97,6 @@ export const useInputStep = (formData: Ref<SandwichFormData>) => {
     isFirstStep,
     goNextInputStep,
     goPreviousInputStep,
-    setCurrentInputStep,
     reset,
   };
 };
