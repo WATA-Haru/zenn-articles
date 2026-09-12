@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, toRef } from "vue";
+import { computed } from "vue";
+import { storeToRefs } from "pinia";
 import Presentation from "./index.vue";
 import { useSandwichFormStore } from "../../model/store/useSandwichFormStore";
 import { useInputStep } from "../../model/composables/useInputStep";
@@ -13,7 +14,17 @@ import type {
   Vegetable,
 } from "../../model/types";
 
-const { formData, reset: resetForm, toggleArrayValue } = useSandwichFormStore();
+const store = useSandwichFormStore();
+const { formData } = storeToRefs(store);
+const {
+  setChoiceUser,
+  setMainMeal,
+  setSource,
+  setHot,
+  toggleVegetable,
+  toggleSideMenu,
+  reset: resetForm,
+} = store;
 
 const {
   currentInputStep,
@@ -24,9 +35,9 @@ const {
   goNextInputStep,
   goPreviousInputStep,
   reset: resetStep,
-} = useInputStep(toRef(() => formData));
+} = useInputStep(formData);
 
-const { options } = useFilteredOptions(toRef(() => formData));
+const { options } = useFilteredOptions(formData);
 
 // ステッパー用に整形
 const steps = computed(() =>
@@ -37,46 +48,28 @@ const steps = computed(() =>
   }))
 );
 
-// --- ハンドラ ---------------------------------------------------------------
-// 上流の選択が変わると下流の選択が無効になりうるので、整合性を保つために関連値をリセットする。
-
 const handleChangeChoiceUser = (value: string) => {
-  formData.choiceUser = value as ChoiceUser;
-  // ベジタリアンは具材ページ自体が無くなるので具材をクリア
-  if (value === "vegetarian") {
-    formData.mainMeal = "";
-  }
-  // エビNG に切り替えたら、選べなくなる選択肢を除去
-  if (value === "noShrimp") {
-    if (formData.mainMeal === "shrimp") formData.mainMeal = "";
-    formData.sideMenus = formData.sideMenus.filter(
-      (item) => item !== "garlicShrimp"
-    );
-  }
+  setChoiceUser(value as ChoiceUser);
 };
 
 const handleChangeMainMeal = (value: string) => {
-  formData.mainMeal = value as MainMeal;
+  setMainMeal(value as MainMeal);
 };
 
 const handleChangeSource = (value: string) => {
-  formData.source = value as Source;
-  // 辛さはチリソースのときだけ。それ以外に変えたらクリア
-  if (value !== "chili") {
-    formData.hot = "";
-  }
+  setSource(value as Source);
 };
 
 const handleChangeHot = (value: string) => {
-  formData.hot = value as Hot;
+  setHot(value as Hot);
 };
 
 const handleToggleVegetable = (value: string) => {
-  toggleArrayValue(formData.vegetables, value as Vegetable);
+  toggleVegetable(value as Vegetable);
 };
 
 const handleToggleSideMenu = (value: string) => {
-  toggleArrayValue(formData.sideMenus, value as SideMenu);
+  toggleSideMenu(value as SideMenu);
 };
 
 const handleReset = () => {
