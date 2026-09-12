@@ -3,14 +3,7 @@ import { computed, toRef } from "vue";
 import Presentation from "./index.vue";
 import { useSandwichFormStore } from "../../model/store/useSandwichFormStore";
 import { useInputStep } from "../../model/store/useInputStep";
-import {
-  choiceUserOptions,
-  mainMealOptions,
-  vegetableOptions,
-  sourceOptions,
-  hotOptions,
-  sideMenuOptions,
-} from "../../model/store/const";
+import { useFilteredOptions } from "../../model/store/useFilteredOptions";
 import type {
   ChoiceUser,
   Hot,
@@ -33,27 +26,7 @@ const {
   reset: resetStep,
 } = useInputStep(toRef(() => formData));
 
-// 選択肢の動的絞り込み（制約: エビNG ではエビ / ガーリックシュリンプを出さない）
-const filteredMainMealOptions = computed(() =>
-  formData.choiceUser === "noShrimp"
-    ? mainMealOptions.filter((option) => option.value !== "shrimp")
-    : mainMealOptions
-);
-
-const filteredSideMenuOptions = computed(() =>
-  formData.choiceUser === "noShrimp" || formData.choiceUser === "vegetarian"
-    ? sideMenuOptions.filter((option) => option.value !== "garlicShrimp")
-    : sideMenuOptions
-);
-
-const options = computed(() => ({
-  choiceUser: choiceUserOptions,
-  mainMeal: filteredMainMealOptions.value,
-  vegetable: vegetableOptions,
-  source: sourceOptions,
-  hot: hotOptions,
-  sideMenu: filteredSideMenuOptions.value,
-}));
+const { options } = useFilteredOptions(toRef(() => formData));
 
 // ステッパー用に整形
 const steps = computed(() =>
