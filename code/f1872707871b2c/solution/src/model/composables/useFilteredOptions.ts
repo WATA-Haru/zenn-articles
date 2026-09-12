@@ -1,21 +1,29 @@
 import { computed, type Ref } from "vue";
-import type { OptionInput, SandwichFormData } from "../types";
+import type {
+  ChoiceUser,
+  Hot,
+  MainMeal,
+  SandwichFormData,
+  SideMenu,
+  Source,
+  Vegetable,
+} from "../types";
 import {
-  choiceUserOptions,
-  hotOptions,
-  mainMealOptions,
-  sideMenuOptions,
-  sourceOptions,
-  vegetableOptions,
+  choiceUserValues,
+  hotValues,
+  mainMealValues,
+  sideMenuValues,
+  sourceValues,
+  vegetableValues,
 } from "../const";
 
 type FilteredOptions = {
-  choiceUser: OptionInput[];
-  mainMeal: OptionInput[];
-  vegetable: OptionInput[];
-  source: OptionInput[];
-  hot: OptionInput[];
-  sideMenu: OptionInput[];
+  choiceUser: ChoiceUser[];
+  mainMeal: MainMeal[];
+  vegetable: Vegetable[];
+  source: Source[];
+  hot: Hot[];
+  sideMenu: SideMenu[];
 };
 
 /**
@@ -26,32 +34,32 @@ type FilteredOptions = {
  *  - エビNG / ベジタリアンのときは sideMenu から "garlicShrimp" を除外
  *
  * 表示都合ではなくドメイン制約なので model 側に置く。
- * 選択済みの値をクリアする整合性リセットは、書き込み側 (container のハンドラ) が
+ * 選択済みの値をクリアする整合性リセットは、書き込み側 (store の setter) が
  * 同じ制約に基づいて実行する。
  */
 export const useFilteredOptions = (
   formData: Ref<SandwichFormData>
 ): { options: Ref<FilteredOptions> } => {
-  const filteredMainMealOptions = computed(() =>
+  const filteredMainMeal = computed(() =>
     formData.value.choiceUser === "noShrimp"
-      ? mainMealOptions.filter((option) => option.value !== "shrimp")
-      : mainMealOptions
+      ? mainMealValues.filter((value) => value !== "shrimp")
+      : mainMealValues
   );
 
-  const filteredSideMenuOptions = computed(() =>
+  const filteredSideMenu = computed(() =>
     formData.value.choiceUser === "noShrimp" ||
     formData.value.choiceUser === "vegetarian"
-      ? sideMenuOptions.filter((option) => option.value !== "garlicShrimp")
-      : sideMenuOptions
+      ? sideMenuValues.filter((value) => value !== "garlicShrimp")
+      : sideMenuValues
   );
 
   const options = computed<FilteredOptions>(() => ({
-    choiceUser: choiceUserOptions,
-    mainMeal: filteredMainMealOptions.value,
-    vegetable: vegetableOptions,
-    source: sourceOptions,
-    hot: hotOptions,
-    sideMenu: filteredSideMenuOptions.value,
+    choiceUser: choiceUserValues,
+    mainMeal: filteredMainMeal.value,
+    vegetable: vegetableValues,
+    source: sourceValues,
+    hot: hotValues,
+    sideMenu: filteredSideMenu.value,
   }));
 
   return { options };

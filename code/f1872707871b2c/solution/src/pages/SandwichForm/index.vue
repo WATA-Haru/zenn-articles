@@ -1,11 +1,24 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type {
+  ChoiceUser,
+  Hot,
   InputStep,
-  OptionInput,
+  MainMeal,
   SandwichFormData,
+  SideMenu,
+  Source,
+  Vegetable,
 } from "../../model/types";
 import { sectionTitles } from "./sectionTitles";
+import {
+  choiceUserLabels,
+  hotLabels,
+  mainMealLabels,
+  sideMenuLabels,
+  sourceLabels,
+  vegetableLabels,
+} from "./optionLabels";
 
 /** ステッパー1つ分の表示情報 */
 type StepView = {
@@ -23,12 +36,12 @@ type Props = {
   steps: StepView[];
   /** ページごとの選択肢（動的に絞り込んだものを親から受け取る） */
   options: {
-    choiceUser: OptionInput[];
-    mainMeal: OptionInput[];
-    vegetable: OptionInput[];
-    source: OptionInput[];
-    hot: OptionInput[];
-    sideMenu: OptionInput[];
+    choiceUser: ChoiceUser[];
+    mainMeal: MainMeal[];
+    vegetable: Vegetable[];
+    source: Source[];
+    hot: Hot[];
+    sideMenu: SideMenu[];
   };
   /** 先頭ページかどうか（「戻る」の出し分け） */
   isFirstStep: boolean;
@@ -86,103 +99,83 @@ const emit = defineEmits<{
 
       <!-- ユーザ選択（単一） -->
       <template v-if="inputStep === 'choiceUser'">
-        <label
-          v-for="option in options.choiceUser"
-          :key="option.value"
-          class="radio"
-        >
+        <label v-for="value in options.choiceUser" :key="value" class="radio">
           <input
             type="radio"
             name="choiceUser"
-            :value="option.value"
-            :checked="formData.choiceUser === option.value"
-            @change="emit('change:choiceUser', option.value)"
+            :value="value"
+            :checked="formData.choiceUser === value"
+            @change="emit('change:choiceUser', value)"
           />
-          {{ option.label }}
+          {{ choiceUserLabels[value] }}
         </label>
       </template>
 
       <!-- 具材選択（単一） -->
       <template v-else-if="inputStep === 'mainMeal'">
-        <label
-          v-for="option in options.mainMeal"
-          :key="option.value"
-          class="radio"
-        >
+        <label v-for="value in options.mainMeal" :key="value" class="radio">
           <input
             type="radio"
             name="mainMeal"
-            :value="option.value"
-            :checked="formData.mainMeal === option.value"
-            @change="emit('change:mainMeal', option.value)"
+            :value="value"
+            :checked="formData.mainMeal === value"
+            @change="emit('change:mainMeal', value)"
           />
-          {{ option.label }}
+          {{ mainMealLabels[value] }}
         </label>
       </template>
 
       <!-- 野菜選択（複数） -->
       <template v-else-if="inputStep === 'vegetable'">
-        <label
-          v-for="option in options.vegetable"
-          :key="option.value"
-          class="checkbox"
-        >
+        <label v-for="value in options.vegetable" :key="value" class="checkbox">
           <input
             type="checkbox"
-            :value="option.value"
-            :checked="(formData.vegetables as string[]).includes(option.value)"
-            @change="emit('change:vegetable', option.value)"
+            :value="value"
+            :checked="formData.vegetables.includes(value)"
+            @change="emit('change:vegetable', value)"
           />
-          {{ option.label }}
+          {{ vegetableLabels[value] }}
         </label>
       </template>
 
       <!-- ソース（単一） -->
       <template v-else-if="inputStep === 'source'">
-        <label
-          v-for="option in options.source"
-          :key="option.value"
-          class="radio"
-        >
+        <label v-for="value in options.source" :key="value" class="radio">
           <input
             type="radio"
             name="source"
-            :value="option.value"
-            :checked="formData.source === option.value"
-            @change="emit('change:source', option.value)"
+            :value="value"
+            :checked="formData.source === value"
+            @change="emit('change:source', value)"
           />
-          {{ option.label }}
+          {{ sourceLabels[value] }}
         </label>
       </template>
 
       <!-- 辛さ（単一） -->
       <template v-else-if="inputStep === 'hot'">
-        <label v-for="option in options.hot" :key="option.value" class="radio">
+        <label v-for="value in options.hot" :key="value" class="radio">
           <input
             type="radio"
             name="hot"
-            :value="option.value"
-            :checked="formData.hot === option.value"
-            @change="emit('change:hot', option.value)"
+            :value="value"
+            :checked="formData.hot === value"
+            @change="emit('change:hot', value)"
           />
-          {{ option.label }}
+          {{ hotLabels[value] }}
         </label>
       </template>
 
       <!-- 付け合せ（複数） -->
       <template v-else-if="inputStep === 'sideMenu'">
-        <label
-          v-for="option in options.sideMenu"
-          :key="option.value"
-          class="checkbox"
-        >
+        <label v-for="value in options.sideMenu" :key="value" class="checkbox">
           <input
             type="checkbox"
-            :value="option.value"
-            :checked="(formData.sideMenus as string[]).includes(option.value)"
-            @change="emit('change:sideMenu', option.value)"
+            :value="value"
+            :checked="formData.sideMenus.includes(value)"
+            @change="emit('change:sideMenu', value)"
           />
-          {{ option.label }}
+          {{ sideMenuLabels[value] }}
         </label>
       </template>
 

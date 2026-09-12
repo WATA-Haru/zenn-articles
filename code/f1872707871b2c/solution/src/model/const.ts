@@ -1,4 +1,12 @@
-import type { OptionInput, SandwichFormData } from "./types";
+import type {
+  ChoiceUser,
+  Hot,
+  MainMeal,
+  SandwichFormData,
+  SideMenu,
+  Source,
+  Vegetable,
+} from "./types";
 
 /**
  * 入力ステップ（＝ページ）の全種類。
@@ -26,38 +34,16 @@ export const initialFormData: SandwichFormData = {
   sideMenus: [],
 };
 
-// --- 各ページの選択肢 -------------------------------------------------------
+// --- 各ページで選べる値 -----------------------------------------------------
+// 表示ラベルは view 側（pages/SandwichForm/optionLabels.ts）が持つ。
 
-export const choiceUserOptions: OptionInput[] = [
-  { value: "normal", label: "ノーマル" },
-  { value: "vegetarian", label: "ベジタリアン（肉・魚・乳製品NG）" },
-  { value: "noShrimp", label: "エビNG" },
+export const choiceUserValues: ChoiceUser[] = [
+  "normal",
+  "vegetarian",
+  "noShrimp",
 ];
-
-export const mainMealOptions: OptionInput[] = [
-  { value: "beef", label: "ビーフ" },
-  { value: "chicken", label: "チキン" },
-  { value: "shrimp", label: "エビ" },
-];
-
-export const vegetableOptions: OptionInput[] = [
-  { value: "tomato", label: "トマト" },
-  { value: "avocado", label: "アボカド" },
-  { value: "lettuce", label: "レタス" },
-];
-
-export const sourceOptions: OptionInput[] = [
-  { value: "chili", label: "チリソース" },
-  { value: "basil", label: "バジルソース" },
-];
-
-export const hotOptions: OptionInput[] = [
-  { value: "mild", label: "少なめ" },
-  { value: "spicy", label: "多め" },
-];
-
-export const sideMenuOptions: OptionInput[] = [
-  { value: "potato", label: "ポテト" },
-  { value: "cola", label: "コーラ" },
-  { value: "garlicShrimp", label: "ガーリックシュリンプ" },
-];
+export const mainMealValues: MainMeal[] = ["beef", "chicken", "shrimp"];
+export const vegetableValues: Vegetable[] = ["tomato", "avocado", "lettuce"];
+export const sourceValues: Source[] = ["chili", "basil"];
+export const hotValues: Hot[] = ["mild", "spicy"];
+export const sideMenuValues: SideMenu[] = ["potato", "cola", "garlicShrimp"];

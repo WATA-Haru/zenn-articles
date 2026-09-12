@@ -6,12 +6,6 @@ import type { InputStepList } from "./const";
  */
 export type InputStep = (typeof InputStepList)[number];
 
-/** ラジオ・チェックボックスの選択肢 */
-export type OptionInput = {
-  value: string;
-  label: string;
-};
-
 export type ChoiceUser = "normal" | "vegetarian" | "noShrimp";
 export type MainMeal = "beef" | "chicken" | "shrimp";
 export type Vegetable = "tomato" | "avocado" | "lettuce";

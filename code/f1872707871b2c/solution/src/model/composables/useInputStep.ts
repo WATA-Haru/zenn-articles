@@ -47,7 +47,7 @@ export const useInputStep = (formData: Ref<SandwichFormData>) => {
 
   /** 現在ページが inputStepList の何番目か */
   const currentIndex = computed(() =>
-    inputStepList.value.indexOf(currentInputStep.value),
+    inputStepList.value.indexOf(currentInputStep.value)
   );
 
   const isFirstStep = computed(() => currentIndex.value <= 0);
