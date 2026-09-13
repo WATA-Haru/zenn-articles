@@ -7,7 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "new": "npx zenn new:article",
     "preview": "npx zenn preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint:md": "markdownlint-cli2 \"{articles,books}/**/*.md\"",
+    "fix:md": "markdownlint-cli2 --fix \"{articles,books}/**/*.md\"",
+    "lint:text": "textlint \"{articles,books}/**/*.md\"",
+    "fix:text": "textlint --fix \"{articles,books}/**/*.md\"",
+    "lint": "npm run lint:text && npm run lint:md",
+    "fix": "npm run fix:text && npm run fix:md"
   },
   "lint-staged": {
     "{articles,books}/**/*.md": [
