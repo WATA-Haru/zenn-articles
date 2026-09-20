@@ -216,7 +216,7 @@ const emit = defineEmits<{
 
 <style scoped>
 .form {
-  max-width: 480px;
+  max-width: 550px;
   margin: 0 auto;
   font-family: system-ui, sans-serif;
 }
@@ -224,18 +224,44 @@ const emit = defineEmits<{
 .stepper {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  justify-content: center;
+  gap: 4px;
   padding: 0;
-  margin: 0 0 20px;
   list-style: none;
 }
 
 .stepper__item {
-  padding: 4px 10px;
-  border-radius: 999px;
+  padding: 4px 15px;
   background: #eee;
   color: #888;
   font-size: 12px;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - 8px) 0%,
+    100% 50%,
+    calc(100% - 8px) 100%,
+    0% 100%,
+    8px 50%
+  );
+  margin: 0 -4px;
+}
+
+.stepper__item:first-child {
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - 8px) 0%,
+    100% 50%,
+    calc(100% - 8px) 100%,
+    0% 100%
+  );
+  margin-left: 0;
+  padding-left: 10px;
+}
+
+.stepper__item:last-child {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 8px 50%);
+  margin-rignt: 0;
+  padding-right: 0;
 }
 
 .stepper__item--visited {
