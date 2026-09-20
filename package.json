@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/WATA-Haru/zenn-connect#readme",
   "dependencies": {
-    "zenn-cli": "^0.4.7"
+    "zenn-cli": "^0.5.4"
   },
   "devDependencies": {
     "husky": "^9.1.7",
