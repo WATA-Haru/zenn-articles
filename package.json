@@ -1,19 +1,20 @@
 {
   "name": "zenn-connect",
   "version": "1.0.0",
+  "packageManager": "pnpm@12.9.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "new": "npx zenn new:article",
-    "preview": "npx zenn preview",
+    "new": "zenn new:article",
+    "preview": "zenn preview",
     "prepare": "husky",
     "lint:md": "markdownlint-cli2 \"{articles,books}/**/*.md\"",
     "fix:md": "markdownlint-cli2 --fix \"{articles,books}/**/*.md\"",
     "lint:text": "textlint \"{articles,books}/**/*.md\"",
     "fix:text": "textlint --fix \"{articles,books}/**/*.md\"",
-    "lint": "npm run lint:text && npm run lint:md",
-    "fix": "npm run fix:text && npm run fix:md"
+    "lint": "pnpm run lint:text && pnpm run lint:md",
+    "fix": "pnpm run fix:text && pnpm run fix:md"
   },
   "lint-staged": {
     "{articles,books}/**/*.md": [
