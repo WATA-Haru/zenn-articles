@@ -26,7 +26,7 @@ publication_name: bita
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->描画が非常に美しいです✨<!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
 [bat](https://github.com/sharkdp/bat) の見た目も素晴らしいですね。
 
-![Ghosttyの見た目](/images/dd3ce13a18ca6e/ghostty.gif)
+![Ghosttyの見た目](/images/dd3ce13a18ca6e/ghostty.webp)
 
 画像の表示にも対応しています。
 
@@ -64,13 +64,13 @@ cursor-color = "#8060FF"
 ### 見た目
 
 画面の分割・複製
-![tmuxの画面分割と複製](/images/dd3ce13a18ca6e/tmux-0.gif)
+![tmuxの画面分割と複製](/images/dd3ce13a18ca6e/tmux-0.webp)
 
 マウスを使わずにターミナル出力をコピー
-![tmuxでのターミナル出力コピー](/images/dd3ce13a18ca6e/tmux-1.gif)
+![tmuxでのターミナル出力コピー](/images/dd3ce13a18ca6e/tmux-1.webp)
 
 セッションの保持
-![tmuxでのセッション保持](/images/dd3ce13a18ca6e/tmux-2.gif)
+![tmuxでのセッション保持](/images/dd3ce13a18ca6e/tmux-2.webp)
 
 ### 採用理由
 
@@ -93,13 +93,13 @@ SSHで開発するようになってから手放せなくなりました。開�
 
 ### 見た目
 
-![Neovimの見た目](/images/dd3ce13a18ca6e/nvim-0.gif)
+![Neovimの見た目](/images/dd3ce13a18ca6e/nvim-0.webp)
 
 好きなプラグインの1つである[mini.files](https://github.com/nvim-mini/mini.files)では、vimでバッファを編集する感覚でディレクトリやファイルのコピー、リネーム、削除が可能です。
-![mini.filesによるファイルの複製](/images/dd3ce13a18ca6e/nvim-1.gif)
+![mini.filesによるファイルの複製](/images/dd3ce13a18ca6e/nvim-1.webp)
 
 ファジーファインダーである[fzf.vim](https://github.com/junegunn/fzf.vim)も好きです。
-![ファジーファインダーとgrepプラグインの紹介](/images/dd3ce13a18ca6e/nvim-2.gif)
+![ファジーファインダーとgrepプラグインの紹介](/images/dd3ce13a18ca6e/nvim-2.webp)
 
 ### 採用理由
 
