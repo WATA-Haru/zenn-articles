@@ -1,5 +1,5 @@
 ---
-title: かっこいいCLIツール3選 ビジュアル編✨
+title: かっこいい開発ツール3選 ビジュアル編✨
 emoji: ㊗️
 type: tech
 topics:
@@ -12,7 +12,7 @@ published: false
 publication_name: bita
 ---
 
-🎄この記事は bitA Tech Blog Advent Calendar 2026の1日目の記事です。
+🎄この記事は [bitA Tech Blog Advent Calendar 2026](https://zenn.dev/p/bita/lists/bita-tech-blog-advent-calendar-2026)の1日目の記事です。
 <!-- textlint-disable ja-technical-writing/no-doubled-joshi -->
 自分が使っているツールの中で、見た目も機能も最高のツールを3つ紹介します。<!-- textlint-enable ja-technical-writing/no-doubled-joshi -->
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->見た目が最高のツールでテンションをぶち上げていきましょう🔥<!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
